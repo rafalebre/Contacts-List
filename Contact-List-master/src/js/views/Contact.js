@@ -15,11 +15,9 @@ const Contact = () => {
       
       {store.contacts.map((contact) => (
         <div className="contact-card" key={contact.id}>
-          <img
-            src=""
-            alt="Contact"
-            className="contact-image"
-          />
+          <div className="contact-image-wrapper">
+          <img src={`https://avatars.dicebear.com/api/avataaars/${contact.email}.svg`} alt="Avatar" className="contact-image" />
+          </div>
           <div className="contact-details">
             <h5>{contact.full_name}</h5>
             <div className="contact-info">
@@ -35,20 +33,16 @@ const Contact = () => {
               {contact.email}
             </div>
           </div>
-          <button
-            className="delete-btn"
-            onClick={() => actions.deleteContact(contact.id)}
-          >
+          <button className="delete-btn" onClick={() => actions.deleteContact(contact.id)}>
             <i className="fas fa-trash" />
           </button>
-          <Link
-            to={`/contact/${contact.id}`}
-            className="view-details-btn"
-          >
+          <Link to={`/contact/${contact.id}`} className="view-details-btn">
             View Details
           </Link>
         </div>
       ))}
     </div>
-  );}
+  );
+};
+
 export default Contact;
