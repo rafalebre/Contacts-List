@@ -1,6 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { Context } from '../store/appContext';
 import './Contact.css';
+import { Link } from 'react-router-dom';
+import ContactDetails from './ContactDetails';
+
 
 const Contact = () => {
   const { store, actions } = useContext(Context);
@@ -11,6 +14,7 @@ const Contact = () => {
 
   return (
     <div className="container">
+    
       {store.contacts.map((contact) => (
         <div className="contact-card" key={contact.id}>
           <div className="contact-image-wrapper">
@@ -32,9 +36,10 @@ const Contact = () => {
             </div>
           </div>
           <div className="contact-actions">
-            <button className="edit-btn" onClick={() => actions.editContact(contact.id)}>
+            <Link to={`/contact/${contact.id}`} className="edit-btn">
               <i className="fas fa-edit" />
-            </button>
+            </Link>
+            
             <button className="delete-btn" onClick={() => actions.deleteContact(contact.id)}>
               <i className="fas fa-trash" />
             </button>
