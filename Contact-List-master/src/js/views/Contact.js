@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Context } from '../store/appContext';
-import ContactCard from '../component/ContactCard';
+import { Link } from 'react-router-dom';
+import './Contact.css';
 
 const Contact = () => {
   const { store, actions } = useContext(Context);
@@ -10,13 +11,44 @@ const Contact = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Contacts</h1>
-      {store.contacts.map(contact => (
-        <ContactCard key={contact.id} contact={contact} />
+    <div className="container">
+      
+      {store.contacts.map((contact) => (
+        <div className="contact-card" key={contact.id}>
+          <img
+            src=""
+            alt="Contact"
+            className="contact-image"
+          />
+          <div className="contact-details">
+            <h5>{contact.full_name}</h5>
+            <div className="contact-info">
+              <i className="icon fas fa-map-marker-alt" />
+              {contact.address}
+            </div>
+            <div className="contact-info">
+              <i className="icon fas fa-phone" />
+              {contact.phone}
+            </div>
+            <div className="contact-info">
+              <i className="icon fas fa-envelope" />
+              {contact.email}
+            </div>
+          </div>
+          <button
+            className="delete-btn"
+            onClick={() => actions.deleteContact(contact.id)}
+          >
+            <i className="fas fa-trash" />
+          </button>
+          <Link
+            to={`/contact/${contact.id}`}
+            className="view-details-btn"
+          >
+            View Details
+          </Link>
+        </div>
       ))}
     </div>
-  );
-};
-
+  );}
 export default Contact;
