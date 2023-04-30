@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Context } from '../store/appContext';
 
 const ContactDetails = () => {
   const { contactId } = useParams();
   const { store } = useContext(Context);
   const contact = store.contacts.find((c) => c.id === contactId);
+  const navigate = useNavigate();
 
   if (!contact) {
     return <h2>Contact not found</h2>;
@@ -18,6 +19,7 @@ const ContactDetails = () => {
       <p>Email: {contact.email}</p>
       <p>Phone: {contact.phone}</p>
       <p>Address: {contact.address}</p>
+      <button onClick={() => navigate('/')}>Back to Agenda</button>
     </div>
   );
 };

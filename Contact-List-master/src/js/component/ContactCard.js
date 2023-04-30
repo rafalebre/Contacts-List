@@ -11,13 +11,14 @@ const ContactCard = ({ contact }) => {
 
   return (
     <div>
-      <Link to={`/contact/${contact.id}`} className="contact-link">
-        <h3>{contact.full_name}</h3>
-        <p>{contact.email}</p>
-        <p>{contact.phone}</p>
-        <p>{contact.address}</p>
-      </Link>
+      <h3>{contact.full_name}</h3>
+      <p>{contact.email}</p>
+      <p>{contact.phone}</p>
+      <p>{contact.address}</p>
       <button onClick={handleDelete}>Delete</button>
+      <Link to={`/contact/${contact.id}`}>
+        <button>View Details</button>
+      </Link>
     </div>
   );
 };
