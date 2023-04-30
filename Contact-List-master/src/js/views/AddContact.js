@@ -65,7 +65,7 @@ const AddContact = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">Save</button>
+        <button type="submit" className="btn btn-primary" style={{ marginTop: '0.5rem' }}>Save</button>
         <Link to="/" className="btn btn-link ml-2">Back to Contacts</Link>
       </form>
     </div>
