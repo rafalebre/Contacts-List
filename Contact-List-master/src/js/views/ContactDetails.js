@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Context } from '../store/appContext';
+import "./ContactDetails.css";
 
 const ContactDetails = () => {
   const { contactId } = useParams();
@@ -19,7 +20,7 @@ const ContactDetails = () => {
       <p>Email: {contact.email}</p>
       <p>Phone: {contact.phone}</p>
       <p>Address: {contact.address}</p>
-      <button onClick={() => navigate('/')}>Back to Agenda</button>
+      <button className='back-to-agenda-btn' onClick={() => navigate('/')}>Back to Agenda</button>
     </div>
   );
 };

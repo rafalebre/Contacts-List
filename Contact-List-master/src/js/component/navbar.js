@@ -5,7 +5,7 @@ import './navbar.css';
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <Link to="/add-contact" className="add-contact-btn">
+      <Link to="/add" className="add-contact-btn">
         Add New Contact
       </Link>
     </nav>
