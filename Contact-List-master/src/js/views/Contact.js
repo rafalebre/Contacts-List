@@ -36,7 +36,7 @@ const Contact = () => {
             </div>
           </div>
           <div className="contact-actions">
-            <Link to={`/contact/${contact.id}`} className="edit-btn">
+            <Link to={`/contact/${contact.id}/edit`} className="edit-btn">
               <i className="fas fa-edit" />
             </Link>
             

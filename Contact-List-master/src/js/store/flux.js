@@ -39,6 +39,15 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error('Error adding contact:', error);
         }
       },
+      loadContact: async (contactId) => {
+        try {
+          const response = await fetch(`https://assets.breatheco.de/apis/fake/contact/${contactId}`);
+          const data = await response.json();
+          setStore({ currentContact: data });
+        } catch (error) {
+          console.error('Error fetching contact:', error);
+        }
+      },
       updateContact: async (contactId, updatedContact) => {
         try {
           const response = await fetch(`https://assets.breatheco.de/apis/fake/contact/${contactId}`, {
