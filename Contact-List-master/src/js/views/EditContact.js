@@ -7,21 +7,29 @@ const EditContact = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+
   useEffect(() => {
     actions.loadContact(contactId);
   }, [contactId, actions]);
 
   const contact = store.currentContact;
 
-  // Check if the contact is not available yet
+  useEffect(() => {
+    if (contact) {
+      setFullName(contact.full_name);
+      setEmail(contact.email);
+      setPhone(contact.phone);
+      setAddress(contact.address);
+    }
+  }, [contact]);
+
   if (!contact) {
     return <h2>Loading...</h2>;
   }
-
-  const [fullName, setFullName] = useState(contact.full_name);
-  const [email, setEmail] = useState(contact.email);
-  const [phone, setPhone] = useState(contact.phone);
-  const [address, setAddress] = useState(contact.address);
 
   const handleSubmit = (e) => {
     e.preventDefault();
