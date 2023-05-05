@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      contacts: []
+      contacts: [],
+      currentContact: null,
     },
     actions: {
       loadContacts: async () => {
@@ -40,12 +41,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       loadContact: async (contactId) => {
+        setStore({ isLoadingContact: true });
         try {
           const response = await fetch(`https://assets.breatheco.de/apis/fake/contact/${contactId}`);
           const data = await response.json();
-          setStore({ currentContact: data });
+          setStore({ currentContact: data, isLoadingContact: false });
         } catch (error) {
           console.error('Error fetching contact:', error);
+          setStore({ isLoadingContact: false });
         }
       },
       updateContact: async (contactId, updatedContact) => {
@@ -85,10 +88,13 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
 
           // Reload contacts
-          getActions().loadContacts();
+          await getActions().loadContacts();
         } catch (error) {
           console.error('Error deleting contact:', error);
         }
+      },
+      resetCurrentContact: () => {
+        setStore({ currentContact: null });
       }
     }
   };
