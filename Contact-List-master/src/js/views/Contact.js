@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Context } from '../store/appContext';
 import './Contact.css';
 import { Link } from 'react-router-dom';
-import ContactDetails from './ContactDetails';
+
 
 
 const Contact = () => {

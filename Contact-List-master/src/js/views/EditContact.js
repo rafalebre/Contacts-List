@@ -11,9 +11,13 @@ const EditContact = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    actions.loadContact(contactId);
+    (async () => {
+      await actions.loadContact(contactId);
+      setLoading(false);
+    })();
   }, [contactId, actions]);
 
   const contact = store.currentContact;
@@ -27,9 +31,10 @@ const EditContact = () => {
     }
   }, [contact]);
 
-  if (!contact) {
+  if (loading) {
     return <h2>Loading...</h2>;
   }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
