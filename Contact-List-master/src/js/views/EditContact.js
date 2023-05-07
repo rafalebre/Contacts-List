@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Context } from '../store/appContext';
+import { Link } from 'react-router-dom';
 
 const EditContact = () => {
   const { contactId } = useParams();
@@ -17,23 +18,15 @@ const EditContact = () => {
     (async () => {
       await actions.loadContact(contactId);
       setLoading(false);
+      const contact = store.currentContact;
+      if (contact) {
+        setFullName(contact.full_name);
+        setEmail(contact.email);
+        setPhone(contact.phone);
+        setAddress(contact.address);
+      }
     })();
-  }, [contactId, actions]);
-
-  const contact = store.currentContact;
-
-  useEffect(() => {
-    if (contact) {
-      setFullName(contact.full_name);
-      setEmail(contact.email);
-      setPhone(contact.phone);
-      setAddress(contact.address);
-    }
-  }, [contact]);
-
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
+  }, []);
 
 
   const handleSubmit = (e) => {
@@ -88,10 +81,12 @@ const EditContact = () => {
                 onChange={(e) => setAddress(e.target.value)}
               />
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary m-1">
               Save Changes
             </button>
+            
           </form>
+          <Link to="/" className="btn btn-info m-1">Back to Contacts</Link>
         </div>
       </div>
     </div>
