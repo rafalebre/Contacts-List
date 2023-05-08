@@ -6,7 +6,8 @@ import AddContact from './views/AddContact';
 import EditContact from './views/EditContact';
 import { Context } from './store/appContext';
 import injectContext from './store/appContext';
-import Navbar from './component/Navbar';
+import Navbar from './component/navbar';
+
 
 const Layout = () => {
   const { actions } = useContext(Context);
